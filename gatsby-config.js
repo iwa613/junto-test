@@ -7,6 +7,29 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sass',
+    //test
+    {
+      resolve: 'gatsby-source-gsheets',
+      options: {
+          spreadsheetId: '1cGLPd1bdrl9gKyOBWYlkYJHm2_jopfjJ1XBJEtKAfbg',
+          credentials: require('./client_secret.json'),
+          types: [
+            {
+              type: 'Event',
+              sheet: 'Events',
+              map: sheet => ({
+                ...sheet,
+                venue___NODE: sheet.venue,
+              }),
+            },
+            {
+              type: 'Venue',
+              sheet: 'Venues',
+            },
+          ],
+      }
+  },
+    //test
     {
       // keep as first gatsby-source-filesystem plugin for gatsby image support
       resolve: 'gatsby-source-filesystem',
